@@ -85,6 +85,7 @@ jobs:
         uses: actions/checkout@v3
       - name: yarn install in deploy-s3-JavaScript Dir
         # node_modulesをignoreしているため、deploy-s3-JavaScriptに行ってからyarn installを実行す流必要がある。
+        # yarn install した後は、リポジトリ直下のパスに戻ってくる。
         run: |
           cd ./.github/actions/deploy-s3-JavaScript
           yarn install
