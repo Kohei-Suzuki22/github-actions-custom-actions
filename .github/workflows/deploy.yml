@@ -25,7 +25,7 @@ jobs:
         # カスタムアクションを使う際もusesを使う。
         # リポジトリ直下からアクションが記載されているファイル「action.yml」までのパスを指定する。
         # ./.github/actions/cached-deps までは指定するが、「action.yml」は指定しなくていい。※ 必ずaction.ymlでカスタムアクションを定義することになっているため。
-        uses: ./.github/actions/cached-deps
+        uses: ./.github/actions/cached-deps2
       - name: Test code
         id: run-tests
         run: npm run test
