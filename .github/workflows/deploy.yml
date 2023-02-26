@@ -14,7 +14,6 @@ jobs:
         # リポジトリ直下からアクションが記載されているファイル「action.yml」までのパスを指定する。
         # ./.github/actions/cached-deps までは指定するが、「action.yml」は指定しなくていい。※ 必ずaction.ymlでカスタムアクションを定義することになっているため。
         uses: ./.github/actions/cached-deps
-      - name: Test code
       - name: Lint code
         run: npm run lint
   test:
