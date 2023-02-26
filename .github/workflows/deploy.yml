@@ -74,3 +74,22 @@ jobs:
         run: ls
       - name: Deploy site
         run: echo "Deploying..."
+  infomation:
+    runs-on: ubuntu-latest
+    # カスタムアクション(JavaScript)を使う時も同様に、
+    # まずは、JSファイルを呼び出す「action.yml」までのパスを指定する。
+    # リポジトリ直下からのパスを記載すること。
+    steps:
+      # ※　自分のリポジトリにカスタムアクションを定義している場合は、checkoutしなければカスタムアクションを取得できないので注意。
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: yarn install in deploy-s3-JavaScript Dir
+        # node_modulesをignoreしているため、deploy-s3-JavaScriptに行ってからyarn installを実行す流必要がある。
+        run: |
+          cd ./.github/actions/deploy-s3-JavaScript
+          yarn install
+          cd ${{ github.workspace }}
+          pwd
+
+      - name: Run JS Custom Action
+        uses: ./.github/actions/deploy-s3-JavaScript

@@ -1,0 +1,11 @@
+{
+  "name": "deploy-s3-JavaScript",
+  "version": "1.0.0",
+  "main": "DeployS3.js",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.10.0",
+    "@actions/exec": "^1.1.1",
+    "@actions/github": "^5.1.1"
+  }
+}
