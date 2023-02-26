@@ -12,6 +12,7 @@ runs:
   steps:
     - name: cached Deps2
       run: echo cached Deps2
+      shell: bash
     - name: Cache dependencies
       id: cache
       uses: actions/cache@v3
