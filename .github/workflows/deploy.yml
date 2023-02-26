@@ -9,7 +9,6 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v3
-      - name: Cache dependencies
       - name: Load & cache dependencies
         # カスタムアクションを使う際もusesを使う。
         # リポジトリ直下からアクションが記載されているファイル「action.yml」までのパスを指定する。
