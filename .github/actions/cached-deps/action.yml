@@ -4,6 +4,16 @@
 name: "Get & Cache Dependencies"
 # description: マーケットプレイスに出した時の、タイトルの下の説明文に該当する。
 description: "Get the dependencies (via npm) add cache them."
+
+# 入力パラメータ(引数的な？) このアクションを呼び出す側で、「with:」を使って入力を渡す。※ required: false の場合渡さなくてもいい。
+inputs:
+  caching:
+    # descriptionの指定は必須
+    description: 'Whether to cache dependencies or not.'
+    required: false
+    # default: 'string' 文字列でデフォルト値を指定することができる。
+    default: 'true'
+
 # composite actionを作る際は必ず「runs」を入れる。
 runs:
   # composite actionを作る際は必ず「using: 'composite'」を入れる。
@@ -17,7 +27,7 @@ runs:
         path: node_modules
         key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
     - name: Install dependencies
-      if: steps.cache.outputs.cache-hit != 'true'
+      if: steps.cache.outputs.cache-hit != 'true' || inputs.caching != 'true'
       run: npm ci
       # runキーを使う場合は、shellキーの記載が必須になる。※ usesキーの場合は記載する必要がない。
       shell: bash
