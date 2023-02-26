@@ -1,14 +1,13 @@
 # カスタムアクションの作り方[公式] -> https://docs.github.com/ja/actions/creating-actions/about-custom-actions
 
-
 # name: マーケットプレイスに出した時のタイトル名に該当する。
 name: "Get & Cache Dependencies"
 # description: マーケットプレイスに出した時の、タイトルの下の説明文に該当する。
-description: 'Get the dependencies (via npm) add cache them.'
+description: "Get the dependencies (via npm) add cache them."
 # composite actionを作る際は必ず「runs」を入れる。
 runs:
   # composite actionを作る際は必ず「using: 'composite'」を入れる。
-  using: 'composite'
+  using: "composite"
   # stepsの中身は、ワークフローの記載と同じで使える。
   steps:
     - name: Cache dependencies
