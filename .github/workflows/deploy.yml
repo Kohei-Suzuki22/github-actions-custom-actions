@@ -10,12 +10,16 @@ jobs:
       - name: Get code
         uses: actions/checkout@v3
       - name: Load & cache dependencies
+        id: load-cache-deps
         # カスタムアクションを使う際もusesを使う。
         # リポジトリ直下からアクションが記載されているファイル「action.yml」までのパスを指定する。
         # ./.github/actions/cached-deps までは指定するが、「action.yml」は指定しなくていい。※ 必ずaction.ymlでカスタムアクションを定義することになっているため。
         uses: ./.github/actions/cached-deps
         with:
           caching: 'false'
+      - name: wether the chache is used.
+        # カスタムアクション「./.github/actions/cached-deps」のアウトプットを取得している。
+        run: echo 'Is the Cache used? -> ${{ steps.load-cache-deps.outputs.used-cache }}'
       - name: Lint code
         run: npm run lint
   test:

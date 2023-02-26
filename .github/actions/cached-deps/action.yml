@@ -13,6 +13,12 @@ inputs:
     required: false
     # default: 'string' 文字列でデフォルト値を指定することができる。
     default: 'true'
+# このアクションのアウトプット(戻り値的な？)。
+outputs:
+  used-cache:
+    # descriptionの指定は必須
+    description: 'Whether the cache was used.'
+    value: ${{ steps.install.outputs.cache }}
 
 # composite actionを作る際は必ず「runs」を入れる。
 runs:
@@ -28,7 +34,10 @@ runs:
         path: node_modules
         key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
     - name: Install dependencies
+      id: install
       if: steps.cache.outputs.cache-hit != 'true' || inputs.caching != 'true'
-      run: npm ci
+      run: |
+        npm ci
+        echo 'cache=${{ inputs.caching }}' >> $GITHUB_OUTPUT
       # runキーを使う場合は、shellキーの記載が必須になる。※ usesキーの場合は記載する必要がない。
       shell: bash
