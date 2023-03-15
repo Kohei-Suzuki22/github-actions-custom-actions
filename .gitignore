@@ -8,9 +8,9 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
-!/.github/actions/deploy-s3-JavaScript/node_modules
+# !/.github/actions/deploy-s3-JavaScript/node_modules
 dist
-!/.github/actions/deploy-s3-JavaScript/node_modules/uuid/dist
+# !/.github/actions/deploy-s3-JavaScript/node_modules/uuid/dist
 dist-ssr
 *.local
 

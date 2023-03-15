@@ -72,6 +72,14 @@ jobs:
           path: ./dist
       - name: Output contents
         run: ls
+      - name: yarn install in deploy-s3-JavaScript Dir
+        # node_modulesをignoreしているため、deploy-s3-JavaScriptに行ってからyarn installを実行す流必要がある。
+        # yarn install した後は、リポジトリ直下のパスに戻ってくる。
+        run: |
+          cd ./.github/actions/deploy-s3-JavaScript
+          yarn install
+          cd ${{ github.workspace }}
+          pwd
       - name: Deploy site
         uses: ./.github/actions/deploy-s3-JavaScript
         env:
