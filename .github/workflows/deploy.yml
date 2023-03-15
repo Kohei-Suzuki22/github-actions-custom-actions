@@ -81,6 +81,7 @@ jobs:
           cd ${{ github.workspace }}
           pwd
       - name: Deploy site
+        id: deploy
         uses: ./.github/actions/deploy-s3-JavaScript
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -89,6 +90,8 @@ jobs:
           bucket: github-actions-custom-js-actions-send-s3
           dist-folder: ./dist
           # buket-region: ap-northeast-1
+      - name: Output deployS3Url
+        run: "echo Live URL: ${{ steps.deploy.outputs.website-url }}"
 
   # infomation:
   #   runs-on: ubuntu-latest

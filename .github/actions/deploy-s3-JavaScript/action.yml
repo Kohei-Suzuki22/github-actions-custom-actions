@@ -1,27 +1,32 @@
-# JavaScriptのカスタムアクション 
+# JavaScriptのカスタムアクション
 # 公式 -> https://docs.github.com/ja/actions/creating-actions/metadata-syntax-for-github-actions#runs-for-javascript-actions
 
-name: 'Deploy to AWS S3'
-description: 'Deploy a static website via AWS S3.'
+name: "Deploy to AWS S3"
+description: "Deploy a static website via AWS S3."
 inputs:
   bucket:
-    description: 'The S3 bucket name.'
+    description: "The S3 bucket name."
     required: true
   bucket-region:
-    description: 'The region of the S3 bucket.'
+    description: "The region of the S3 bucket."
     required: false
-    default: 'ap-northeast-1'
+    default: "ap-northeast-1"
   dist-folder:
-    description: 'The folder containing the deployable files.'
+    description: "The folder containing the deployable files."
     required: true
-  
+outputs:
+  website-url:
+    # JavaScriptのカスタムアクションでは、「value」キーが不要なことに注意。
+    description: "The URL of the deployed website."
+
+
 runs:
   # カスタムアクション(JavaScript)を使う場合は、ここでnodeXXと指定する。※　XXはnodeのバージョン。指定できるバージョンは公式に記載してあるもの。
-  using: 'node16'
+  using: "node16"
   # main: 実行するJavaScriptファイルを指定する。
   # このアクションファイル「action.yml」と同じ階層にいる場合は、ファイル名のみを指定すればいい。
   # 違う階層にいる場合はpathを指定する必要がある。
-  main: 'DeployS3.js'
+  main: "DeployS3.js"
 
   # mainの他にも、pre:, post:, pre-if, post-ifが指定できる。
   # -----以下使い方の見本--------
@@ -29,4 +34,3 @@ runs:
   # pre: 'preDeployS3.js'         # mainの実行前に「preDeployS3.js」が実行される。
   # post-if: runner.os == 'linux'  # postを実行する条件を記載する。デフォルトでは、always()が指定されているため、post-ifの記載がない場合は常にpostが実行される。
   # post: 'postDeployS3.js'       # mainの実行後に「postDeployS3.js」実行される。
-

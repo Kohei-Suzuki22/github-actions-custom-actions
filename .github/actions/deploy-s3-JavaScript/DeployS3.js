@@ -22,7 +22,10 @@ function run() {
   exec.exec(`aws s3 sync ${distFolder} ${s3Uri} --region ${bucketRegion}`)
 
 
-
+  const websiteUrl = `http://${bucket}.s3-website-${bucketRegion}.amazonaws.com`
+  // 3)静的ホスティングのurlをアウトプットに指定。
+  // // core.setOutput(<action.ymlで記載したoutputsの対象のキー名>, <値>)
+  core.setOutput('website-url', websiteUrl)   // echo 'website-url=websiteUrl' >> $GITHUB_OUTPUTと同じ。
 
   // アクションズのワークフローにログ出力する。
   core.notice('Hello from my custom JavaScript Action!')
