@@ -7,7 +7,7 @@ inputs:
   bucket:
     description: 'The S3 bucket name.'
     required: true
-  bucket-reagion:
+  bucket-region:
     description: 'The region of the S3 bucket.'
     required: false
     default: 'ap-northeast-1'

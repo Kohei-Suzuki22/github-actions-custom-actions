@@ -79,7 +79,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         with:
           bucket: github-actions-custom-js-actions-send-s3
-          dist-filder: ./dist
+          dist-folder: ./dist
           # buket-region: ap-northeast-1
 
   # infomation:
